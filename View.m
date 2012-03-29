@@ -25,10 +25,10 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
- UIFont *font = [UIFont systemFontOfSize: 2*86];
- NSString *string = @"Hello, World!";
- CGPoint point = CGPointMake(0.0, 0.0);
- [string drawAtPoint: point withFont: font];
+    [@"Hello, World!"
+     drawAtPoint: CGPointMake(0, 0)
+     withFont: [UIFont systemFontOfSize: 32]
+     ];
 }
 
 
