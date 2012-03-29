@@ -7,7 +7,9 @@
 //
 
 #import "View.h"
-
+#define RED(color)	(((color) >> 2*8 & 0xFF) / 255.0)
+#define GREEN(color)	(((color) >> 1*8 & 0xFF) / 255.0)
+#define BLUE(color)	(((color) >> 0*8 & 0xFF) / 255.0)
 @implementation View
 
 - (id)initWithFrame:(CGRect)frame
@@ -15,7 +17,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.backgroundColor = [UIColor yellowColor];
+        unsigned color = 0xFF00FF;	//purple
+        self.backgroundColor = [UIColor colorWithRed: RED(color) green: GREEN(color) blue: BLUE(color) alpha: 1.0];
         //Keep the size of the view the same,
 		//but move the origin to the center of the view.
 		CGFloat w = self.bounds.size.width;
@@ -55,6 +58,8 @@
 	}
     
     CGSize size = [string sizeWithFont: f];
+    CGContextRef c = UIGraphicsGetCurrentContext();
+	CGContextSetRGBFillColor(c, 0, .5, 1.0, 1.0); //red, green, blue, alpha
     CGPoint point = CGPointMake(-size.width / 2, -size.height / 2);
     [string drawAtPoint: point withFont: f];
 }
