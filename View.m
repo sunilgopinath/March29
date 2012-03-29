@@ -26,7 +26,7 @@
 - (void)drawRect:(CGRect)rect
 {
     [@"Hello, World!"
-     drawAtPoint: CGPointMake(0, 0)
+     drawAtPoint: CGPointZero
      withFont: [UIFont systemFontOfSize: 32]
      ];
 }
