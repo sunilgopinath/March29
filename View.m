@@ -41,7 +41,7 @@
 	//NSString *string = device.model;		//Is it an iPhone, iPod, or iPad?
 	//NSString *string = device.uniqueIdentifier;	//serial number
 	//NSString *string = device.systemName;		//name of operating system, e.g. "iPhone OS"
-	//NSString *string = device.systemVersion;	//version number of operating system, e.g., "4.3"
+	NSString *deviceVersion = device.systemVersion;	//version number of operating system, e.g., "4.3"
     
     NSURL *url = [[NSURL alloc] initWithString:
                   @"http://finance.yahoo.com/d/quotes.csv?s=IBM&f=sl1t1"];
@@ -58,10 +58,15 @@
 	}
     
     CGSize size = [string sizeWithFont: f];
-    CGContextRef c = UIGraphicsGetCurrentContext();
-	CGContextSetRGBFillColor(c, 0, .5, 1.0, 1.0); //red, green, blue, alpha
+    CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), 0, .5, 1.0, 1.0);
     CGPoint point = CGPointMake(-size.width / 2, -size.height / 2);
     [string drawAtPoint: point withFont: f];
+    
+    //second line
+    CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(), 0, .5, .1, 1.0);
+    CGPoint p = CGPointMake(0.0, 0.0);
+    [deviceVersion drawAtPoint: p withFont: f];
+
 }
 
 
