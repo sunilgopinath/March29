@@ -31,14 +31,29 @@
 - (void)drawRect:(CGRect)rect
 {
     // Drawing code
-    UIFont *f = [UIFont systemFontOfSize: 32.0];
+    UIFont *f = [UIFont  boldSystemFontOfSize: 32.0];
     NSString *s = @"هزا مدهش";
     UIDevice *device = [UIDevice currentDevice];	//There is only one object of this class.
     
 	//NSString *string = device.model;		//Is it an iPhone, iPod, or iPad?
 	//NSString *string = device.uniqueIdentifier;	//serial number
 	//NSString *string = device.systemName;		//name of operating system, e.g. "iPhone OS"
-	NSString *string = device.systemVersion;	//version number of operating system, e.g., "4.3"
+	//NSString *string = device.systemVersion;	//version number of operating system, e.g., "4.3"
+    
+    NSURL *url = [[NSURL alloc] initWithString:
+                  @"http://finance.yahoo.com/d/quotes.csv?s=IBM&f=sl1t1"];
+    
+	NSError *error;
+	NSString *string = [[NSString alloc]
+                        initWithContentsOfURL: url
+                        encoding: NSUTF8StringEncoding
+                        error: &error
+                        ];
+    
+	if (string == nil) {
+		string = [error localizedDescription];
+	}
+    
     CGSize size = [string sizeWithFont: f];
     CGPoint point = CGPointMake(-size.width / 2, -size.height / 2);
     [string drawAtPoint: point withFont: f];
